@@ -1,6 +1,13 @@
+from gino import Gino
+from gino.schema import GinoSchemaVisitor
+from data.config import POSTGRES_URL
+
+import asyncio
+
+db = Gino()
+
 from sqlalchemy import (Column, Integer, String, Sequence, DateTime, Float, ForeignKey, Boolean)
 from sqlalchemy import sql
-from utils.db_api.database import db
 import datetime
 
 
@@ -40,3 +47,14 @@ class Orders(db.Model):
     accepted = db.Column(db.Boolean)
     status = db.Column(db.String(60))
     time_ordered = db.Column(db.DateTime(timezone=True), default=datetime.datetime.utcnow)
+
+
+async def create_db():
+    await db.set_bind(POSTGRES_URL)
+    db.gino: GinoSchemaVisitor
+    await db.gino.drop_all()
+    await db.gino.create_all()
+
+
+loop = asyncio.get_event_loop()
+loop.run_until_complete(create_db())
