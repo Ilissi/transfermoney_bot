@@ -30,6 +30,3 @@ class qiwiAPI:
         h = s.get('https://qiwi.com/payment/form/99?', params=parameters)
         return h.url
 
-
-rc = qiwiAPI(QIWI_API_KEY, '+7 999 925‑62‑05')
-print(rc.create_qiwi_invoice(45.23))

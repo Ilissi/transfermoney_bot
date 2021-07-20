@@ -11,7 +11,7 @@ async def user_balance():
 
 async def method_balance():
     method = InlineKeyboardMarkup(row_width=3)
-    method.row(InlineKeyboardButton('QIWI', callback_data='qiwi'), InlineKeyboardButton('Криптовалюта', callback_data='crypta'))
+    method.row(InlineKeyboardButton('QIWI', callback_data='qiwi'), InlineKeyboardButton('Криптовалюта', callback_data='cryptonator'))
     method.add(InlineKeyboardButton('Назад', callback_data='cancel'))
     return method
 

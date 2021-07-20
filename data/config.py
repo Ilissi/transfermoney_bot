@@ -14,5 +14,6 @@ MERCHANT_ID = env.str("MERCHANT_ID")
 SECRET = env.str("SECRET")
 ITEM_NAME = env.str("ITEM_NAME")
 QIWI_API_KEY = env.str("QIWI_API_KEY")
+QIWI_NUMBER = env.str("QIWI_NUMBER")
 
 POSTGRES_URL = f"postgresql://{PG_USER}:{PG_PASSWORD}@{IP}/{DATABASE}"

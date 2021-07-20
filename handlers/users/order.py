@@ -3,7 +3,7 @@ from aiogram.types import CallbackQuery, Message
 
 import typing
 
-from keyboards.inline.currency import create_currency_get, create_country_get
+from keyboards.inline.currency_keyboard import create_currency_get, create_country_get
 from keyboards.inline.main_keyboards import accept_order
 from states.add_order import Order
 from utils.callback import currency_cb, country_cb
