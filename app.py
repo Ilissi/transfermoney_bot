@@ -1,7 +1,7 @@
 from aiogram import executor
 
 from aiogram.dispatcher.webhook import configure_app
-from loader import dp
+from loader import dp, bot
 import middlewares, filters, handlers
 from utils.notify_admins import on_startup_notify
 from utils.set_bot_commands import set_default_commands
@@ -14,16 +14,13 @@ async def api_handler(request):
 
 
 async def on_startup(dispatcher):
+    webhook = await bot.get_webhook_info()
+    print(webhook)
     # Устанавливаем дефолтные команды
     await set_default_commands(dispatcher)
-    res = await create_db()
-    app = web.Application()
-
-    app.add_routes([web.post('/api', api_handler)])
-    configure_app(dp, app, "/bot")
     # Уведомляет про запуск
     await on_startup_notify(dispatcher)
 
 
 if __name__ == '__main__':
-    executor.start_webhook(dp, on_startup=on_startup)
+    executor.start_webhook(dp, webhook_path='/user_bot', on_startup=on_startup, host='127.0.0.1', port=8080)
