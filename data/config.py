@@ -1,19 +1,14 @@
-from environs import Env
-
-# Теперь используем вместо библиотеки python-dotenv библиотеку environs
-env = Env()
-env.read_env()
-
-BOT_TOKEN = env.str("BOT_TOKEN")  # Забираем значение типа str
-ADMINS = env.list("ADMINS")  # Тут у нас будет список из админов
-IP = env.str("IP")  # Тоже str, но для айпи адреса хоста
-PG_USER = env.str("PG_USER")
-PG_PASSWORD = env.str("PG_PASSWORD")
-DATABASE = env.str("DATABASE")
-MERCHANT_ID = env.str("MERCHANT_ID")
-SECRET = env.str("SECRET")
-ITEM_NAME = env.str("ITEM_NAME")
-QIWI_API_KEY = env.str("QIWI_API_KEY")
-QIWI_NUMBER = env.str("QIWI_NUMBER")
+BOT_TOKEN = '1801008597:AAGLmA3GJLad_-NTa3JPPtrSxLw_nbF2Gdo'
+ADMIN_BOT = '924706072:AAG3Pla2LHRtEH9wt3m8b6s2MIQGTu80_uc'
+ADMINS = [474053240]
+IP = 'localhost'
+PG_USER = 'postgres'
+PG_PASSWORD = 'vick1715'
+DATABASE = 'botapp'
+MERCHANT_ID = 'e9d0f828c9b8b52f00631e4b6789b0fb'
+SECRET = 'a4533e9799acd0e92a9800c20a10d556'
+QIWI_API_KEY = '4388de24c629234586e618ee92370796'
+QIWI_NUMBER = '+7 999 925‑62‑05'
+ITEM_NAME = 'MoneyTransfer'
 
 POSTGRES_URL = f"postgresql://{PG_USER}:{PG_PASSWORD}@{IP}/{DATABASE}"
