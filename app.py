@@ -15,7 +15,7 @@ async def api_handler(request):
 
 
 async def on_startup(dispatcher, url):
-    print(url)
+    await bot.delete_webhook()
     await bot.set_webhook(url)
     webhook = await bot.get_webhook_info()
     print(webhook)
@@ -26,4 +26,4 @@ async def on_startup(dispatcher, url):
 
 
 if __name__ == '__main__':
-    executor.start_webhook(dp, webhook_path='/user_bot', on_startup=functools.partial(on_startup, url='https://transfermoneybot.ru/user_bot'), host='127.0.0.1', port=8080)
+    executor.start_webhook(dp, webhook_path='/user_bot/', on_startup=functools.partial(on_startup, url='https://transfermoneybot.ru/user_bot/'), host='127.0.0.1', port=8080)
