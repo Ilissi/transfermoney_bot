@@ -15,6 +15,7 @@ async def api_handler(request):
 
 
 async def on_startup(dispatcher, url):
+    await create_db()
     await bot.delete_webhook()
     await bot.set_webhook(url)
     webhook = await bot.get_webhook_info()
