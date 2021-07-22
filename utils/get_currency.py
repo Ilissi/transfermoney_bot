@@ -9,6 +9,9 @@ def get_currency(post_currency, get_currency):
             append_dict.update(post_currency=float(values['rate']))
         elif values['cc'] == get_currency:
             append_dict.update(get_currency=float(values['rate']))
+        elif post_currency == "USD":
+            append_dict.update(post_currency=float(values['rate']))
+            append_dict.update(get_currency=float(values['rate']))
         elif post_currency == 'UAH':
             append_dict.update(get_currency=float(1))
         elif get_currency == 'UAH':
@@ -18,6 +21,7 @@ def get_currency(post_currency, get_currency):
 
 def calculate_sum(dict_object):
     currency_dict = get_currency(dict_object['get_currency'], 'USD')
+    print(currency_dict)
     get_value = (currency_dict['post_currency']/currency_dict['get_currency'])*1.157*dict_object['amount_order']
     return round(get_value, 1)
 

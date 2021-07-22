@@ -48,4 +48,4 @@ dict_currency_get = {
     'VND': ['Vietnam 🇻🇳'],
 }
 
-list_currency_get = ['EUR', 'USD', 'RUB', 'DZD', 'AMD', 'AZN', 'BDT', 'BYN', 'BRL', 'BGN', 'CAD', 'CNY', 'CZK', 'EGP', 'GEL', 'HKD', 'HUF', 'INR', 'IDR', 'ILS', 'JPY', 'KZT', 'KGS', 'LBP', 'MYR', 'MXN', 'MDL', 'MAD', 'NZD', 'PKR', 'PLN', 'RON', 'SAR', 'RSD', 'KRW', 'TJS', 'THB', 'TRY', 'AED', 'UAH', 'UZS', 'VND']
+list_currency_get = ['EUR', 'USD', 'RUB', 'PLN', 'DZD', 'AMD', 'AZN', 'BDT', 'BYN', 'BRL', 'BGN', 'CAD', 'CNY', 'CZK', 'EGP', 'GEL', 'HKD', 'HUF', 'INR', 'IDR', 'ILS', 'JPY', 'KZT', 'KGS', 'LBP', 'MYR', 'MXN', 'MDL', 'MAD', 'NZD', 'PKR', 'RON', 'SAR', 'RSD', 'KRW', 'TJS', 'THB', 'TRY', 'AED', 'UAH', 'UZS', 'VND']
