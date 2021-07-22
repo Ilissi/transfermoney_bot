@@ -18,7 +18,7 @@ async def balance_menu(call: CallbackQuery, state: FSMContext):
 @dp.callback_query_handler(text_contains='history', state='*')
 async def get_history(call: CallbackQuery, state: FSMContext):
     await state.finish()
-    orders = await get_orders(call.message.chat.id)
+    orders = await get_orders(int(call.message.chat.id))
     if orders is None:
         await call.answer('Истории транзакций не найдено')
     else:
