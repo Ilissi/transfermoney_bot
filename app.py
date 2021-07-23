@@ -14,11 +14,11 @@ async def api_handler(request):
     return web.json_response({"status": "OK"}, status=200)
 
 
-async def on_startup(dispatcher, url):
+async def on_startup(dispatcher):
     await create_db()
-    await bot.delete_webhook()
-    await bot.set_webhook(url)
-    webhook = await bot.get_webhook_info()
+    ##await bot.delete_webhook()
+   ## await bot.set_webhook(url)
+   ## webhook = await bot.get_webhook_info()
     # Устанавливаем дефолтные команды
     await set_default_commands(dispatcher)
     # Уведомляет про запуск
@@ -26,4 +26,5 @@ async def on_startup(dispatcher, url):
 
 
 if __name__ == '__main__':
-    executor.start_webhook(dp, webhook_path='/admin_bot/', on_startup=functools.partial(on_startup, url='https://transfermoneybot.ru/admin_bot/'), host='127.0.0.1', port=8085)
+    #executor.start_webhook(dp, webhook_path='/admin_bot/', on_startup=functools.partial(on_startup, url='https://transfermoneybot.ru/admin_bot/'), host='127.0.0.1', port=8085)
+    executor.start_polling(dp, on_startup=on_startup)

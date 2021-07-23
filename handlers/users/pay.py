@@ -1,7 +1,6 @@
 from aiogram.dispatcher import FSMContext
 from aiogram.types import CallbackQuery, Message
 
-
 from utils.db_api.transaction_controller import get_transaction
 from keyboards.inline.user_balance import method_balance
 from utils.format_message import show_pay
@@ -10,6 +9,8 @@ from utils.pay_send.qiwi_API import qiwiAPI
 from utils.pay_send.utils_cryptonator import create_invoice
 from data.config import QIWI_API_KEY, QIWI_NUMBER
 from keyboards.inline.pay_keyboard import create_pay_link
+from utils.db_api.transaction_controller import create_transaction
+from utils.admin_utils import send_admin_pay_message
 
 from loader import dp, bot
 
@@ -21,10 +22,9 @@ async def get_history_pay(call: CallbackQuery, state: FSMContext):
     if pays is None:
         await call.message.answer('Пополнений нету')
     else:
-        message = ''
-        for pay in pays[:10]:
-            message += show_pay(pay)
-        bot.send_message(call.message.chat.id, message)
+        for pay in reversed(pays[:3]):
+            message = show_pay(pay)
+            await bot.send_message(call.message.chat.id, message)
 
 
 @dp.callback_query_handler(text_contains='pay', state='*')
@@ -55,6 +55,8 @@ async def create_url(message: Message, state: FSMContext):
     elif pay_data['type'] == 'cryptonator':
         url_data = create_invoice(pay_data['amount'])
         await message.answer('Оплатите счет Cryptonator:', reply_markup=await create_pay_link(url_data))
-
-
+    transaction_object = await create_transaction(user_id=message.chat.id, amount=float(pay_data['amount']),
+                                                  type_transaction=pay_data['type'],
+                                                  status='Не подтверждена', pay_url=url_data)
+    await send_admin_pay_message(transaction_object)
 

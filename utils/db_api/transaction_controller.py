@@ -9,7 +9,7 @@ async def create_transaction(**kwargs):
 
 
 async def get_transaction(telegram_id):
-    transaction = await Transactions.query.where(Transactions.user_id == telegram_id).gino.first()
+    transaction = await Transactions.query.where(Transactions.user_id == telegram_id).gino.all()
     return transaction
 
 

@@ -22,5 +22,5 @@ async def get_history(call: CallbackQuery, state: FSMContext):
     if len(orders) == 0:
         await call.message.answer('Истории транзакций не найдено')
     else:
-        for order in orders[:10]:
+        for order in reversed(orders[:3]):
             await bot.send_message(call.message.chat.id, show_message(order))
