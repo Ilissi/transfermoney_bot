@@ -84,11 +84,11 @@ async def create_accept(call: CallbackQuery, state: FSMContext):
     elif balance < amount:
         await call.message.edit_text('На балансе недостаточно USD для обмена!')
     elif balance >= amount:
-        await call.message.edit_text('Заявка на обмен отправлена!')
         order_object = await add_order(user_id=call.message.chat.id, amount_get=user_data['amount_order'], accepted=False,
                         currency_get=user_data['get_currency'], country_get=user_data['get_country'],
                         card_number=user_data['card_number'], FIO=user_data['FIO'], amount_spend=amount,
                         status='Не подтверждена администратором')
+        await call.message.edit_text('Заявка на обмен отправлена!\nID заказа: {}'.format(order_object.id))
         new_balance = round(balance-amount, 2)
         await update_balance(call.message.chat.id, new_balance)
         await send_admin_order_message(order_object)
